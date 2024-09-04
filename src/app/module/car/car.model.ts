@@ -16,6 +16,9 @@ const Carschema = new Schema<CarInterface>({
     color: {
         type: String,
     },
+    image: {
+        type: String,
+    },
     status: { type: String, enum: { values: Status, message: `status is required` } },
     features: { type: [String], required: true },
     isDeleted: { type: Boolean, default: false },

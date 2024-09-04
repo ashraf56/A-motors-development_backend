@@ -10,5 +10,6 @@ export interface CarInterface {
     status: Tstatus;
     features: string[];
     pricePerHour: number;
-    isDeleted: boolean
+    isDeleted: boolean;
+    image:string;
 }

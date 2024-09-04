@@ -13,6 +13,9 @@ const Carschema = new mongoose_1.Schema({
     color: {
         type: String,
     },
+    image: {
+        type: String,
+    },
     status: { type: String, enum: { values: car_constant_1.Status, message: `status is required` } },
     features: { type: [String], required: true },
     isDeleted: { type: Boolean, default: false },
