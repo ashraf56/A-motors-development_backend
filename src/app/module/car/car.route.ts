@@ -16,6 +16,7 @@ router.post('/create-car',
 
 router.get('/', CarContoller.getAllCarController)
 
+router.get('/available-car', authGuardValidator('admin', 'user'), CarContoller.getAavailableCarController)
 router.get('/:id', CarContoller.getSingleCarController)
 
 router.delete('/:id',

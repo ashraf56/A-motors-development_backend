@@ -40,6 +40,10 @@ const getALlCarInfoFromDB = () => __awaiter(void 0, void 0, void 0, function* ()
     const result = yield car_model_1.default.find();
     return result;
 });
+const getAvailableCarInfoFromDB = () => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield car_model_1.default.find({ status: 'available' });
+    return result;
+});
 const getSIngleCArDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield car_model_1.default.findById({ _id: id });
     return result;
@@ -156,5 +160,6 @@ exports.CarService = {
     getSIngleCArDB,
     deleteAcarDB,
     updateAcarDB,
-    returnCarDB
+    returnCarDB,
+    getAvailableCarInfoFromDB
 };

@@ -31,6 +31,15 @@ const getAllCarController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) =>
         data: result
     });
 }));
+const getAavailableCarController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield car_service_1.CarService.getAvailableCarInfoFromDB();
+    res.status(200).json({
+        success: true,
+        statusCode: 200,
+        message: "available Cars retrieved  successfully",
+        data: result
+    });
+}));
 const getSingleCarController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const result = yield car_service_1.CarService.getSIngleCArDB(id);
@@ -78,5 +87,6 @@ exports.CarContoller = {
     getSingleCarController,
     deleteSingleCarController,
     updateSingleCarController,
-    reTurnCarController
+    reTurnCarController,
+    getAavailableCarController
 };

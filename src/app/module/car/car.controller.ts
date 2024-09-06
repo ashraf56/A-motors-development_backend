@@ -30,6 +30,19 @@ const getAllCarController = tryCatchWrapper(
 
     }
 )
+const getAavailableCarController = tryCatchWrapper(
+    async (req, res) => {
+        const result = await CarService.getAvailableCarInfoFromDB();
+
+        res.status(200).json({
+            success: true,
+            statusCode: 200,
+            message: "available Cars retrieved  successfully",
+            data: result
+        })
+
+    }
+)
 const getSingleCarController = tryCatchWrapper(
     async (req, res) => {
         const { id } = req.params;
@@ -94,5 +107,6 @@ export const CarContoller = {
     getSingleCarController,
     deleteSingleCarController,
     updateSingleCarController,
-    reTurnCarController
+    reTurnCarController,
+    getAavailableCarController
 }

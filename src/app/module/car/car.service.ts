@@ -24,6 +24,10 @@ const getALlCarInfoFromDB = async () => {
     const result = await Car.find()
     return result
 }
+const getAvailableCarInfoFromDB = async () => {
+    const result = await Car.find({ status: 'available' })
+    return result
+}
 
 
 const getSIngleCArDB = async (id: string) => {
@@ -212,6 +216,7 @@ export const CarService = {
     getSIngleCArDB,
     deleteAcarDB,
     updateAcarDB,
-    returnCarDB
+    returnCarDB,
+    getAvailableCarInfoFromDB
 }
 
