@@ -32,7 +32,8 @@ const getAllCarController = tryCatchWrapper(
 )
 const getAavailableCarController = tryCatchWrapper(
     async (req, res) => {
-        const result = await CarService.getAvailableCarInfoFromDB();
+        const searchTerm= req.query.searchTerm as string | null
+        const result = await CarService.getAvailableCarInfoFromDB(searchTerm);
 
         res.status(200).json({
             success: true,

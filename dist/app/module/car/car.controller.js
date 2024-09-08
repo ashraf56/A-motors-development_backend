@@ -32,7 +32,8 @@ const getAllCarController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) =>
     });
 }));
 const getAavailableCarController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield car_service_1.CarService.getAvailableCarInfoFromDB();
+    const searchTerm = req.query.searchTerm;
+    const result = yield car_service_1.CarService.getAvailableCarInfoFromDB(searchTerm);
     res.status(200).json({
         success: true,
         statusCode: 200,

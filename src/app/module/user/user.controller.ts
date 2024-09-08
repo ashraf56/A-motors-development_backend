@@ -14,6 +14,18 @@ const CreateUserController = tryCatchWrapper(
         })
     }
 )
+const getAllUserController = tryCatchWrapper(
+    async (req, res) => {
+        const result = await Userservices.getAllUserDB()
+
+        res.status(200).json({
+            success: true,
+            statusCode: 200,
+            message: "User retrieved successfully",
+            data: result
+        })
+    }
+)
 
 
 const LoginController = tryCatchWrapper(
@@ -35,5 +47,6 @@ const LoginController = tryCatchWrapper(
 
 export const UserCOntrollers = {
     CreateUserController,
-    LoginController
+    LoginController,
+    getAllUserController
 }

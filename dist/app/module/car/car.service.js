@@ -24,6 +24,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CarService = void 0;
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const mongoose_1 = require("mongoose");
 const trhowErrorHandller_1 = __importDefault(require("../../utills/trhowErrorHandller"));
 const car_model_1 = __importDefault(require("./car.model"));
@@ -40,8 +41,15 @@ const getALlCarInfoFromDB = () => __awaiter(void 0, void 0, void 0, function* ()
     const result = yield car_model_1.default.find();
     return result;
 });
-const getAvailableCarInfoFromDB = () => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield car_model_1.default.find({ status: 'available' });
+const getAvailableCarInfoFromDB = (searchTerm) => __awaiter(void 0, void 0, void 0, function* () {
+    let query = { status: 'available' };
+    if (searchTerm) {
+        query = Object.assign(Object.assign({}, query), { $or: [
+                { name: { $regex: searchTerm, $options: 'i' } },
+                { features: { $elemMatch: { $regex: searchTerm, $options: 'i' } } }
+            ] });
+    }
+    const result = yield car_model_1.default.find(query);
     return result;
 });
 const getSIngleCArDB = (id) => __awaiter(void 0, void 0, void 0, function* () {

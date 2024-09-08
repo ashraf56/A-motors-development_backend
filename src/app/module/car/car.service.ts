@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { startSession } from "mongoose";
 import trhowErrorHandller from "../../utills/trhowErrorHandller";
 import { CarInterface } from "./car.interface";
@@ -24,8 +25,20 @@ const getALlCarInfoFromDB = async () => {
     const result = await Car.find()
     return result
 }
-const getAvailableCarInfoFromDB = async () => {
-    const result = await Car.find({ status: 'available' })
+const getAvailableCarInfoFromDB = async (searchTerm:string | null) => {
+    let query:any = {status: 'available'}; 
+
+    if (searchTerm) {
+        query = {
+            ...query ,
+            $or: [
+                { name: { $regex: searchTerm, $options: 'i' } }, 
+                { features: {$elemMatch:{ $regex: searchTerm, $options: 'i'} } }
+            ]
+           
+        };
+    }
+    const result = await Car.find(query)
     return result
 }
 

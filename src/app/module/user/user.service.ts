@@ -14,6 +14,12 @@ const createUserDB = async (payload: Userinterface) => {
     return result
 
 }
+const getAllUserDB = async () => {
+
+    const result = await User.find()
+    return result
+
+}
 
 
 const LogInUserDB = async (payload: Userinterface) => {
@@ -49,5 +55,6 @@ const LogInUserDB = async (payload: Userinterface) => {
 
 export const Userservices = {
     createUserDB,
-    LogInUserDB
+    LogInUserDB,
+    getAllUserDB
 }

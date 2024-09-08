@@ -25,6 +25,10 @@ const createUserDB = (payload) => __awaiter(void 0, void 0, void 0, function* ()
     const result = yield user_model_1.default.create(payload);
     return result;
 });
+const getAllUserDB = () => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield user_model_1.default.find();
+    return result;
+});
 const LogInUserDB = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     const users = yield user_model_1.default.findOne({ email: payload.email });
     if (!users) {
@@ -45,5 +49,6 @@ const LogInUserDB = (payload) => __awaiter(void 0, void 0, void 0, function* () 
 });
 exports.Userservices = {
     createUserDB,
-    LogInUserDB
+    LogInUserDB,
+    getAllUserDB
 };
