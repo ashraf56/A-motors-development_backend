@@ -20,7 +20,8 @@ const Carschema = new mongoose_1.Schema({
     features: { type: [String], required: true },
     isDeleted: { type: Boolean, default: false },
     isElectric: { type: Boolean },
-    pricePerHour: { type: Number, required: true }
+    pricePerHour: { type: Number, required: true },
+    carType: { type: String, required: true }
 }, {
     timestamps: true
 });

@@ -12,7 +12,8 @@ const createAcarValidationSchema = z.object({
         isDeleted: z.boolean().default(false),
         isElectric: z.boolean().optional(),
         pricePerHour: z.number(),
-        image:z.string()
+        image:z.string(),
+        carType:z.string(),
     })
 })
 const updateAcarValidationSchema = z.object({
@@ -26,6 +27,7 @@ const updateAcarValidationSchema = z.object({
         isElectric: z.boolean().optional(),
         pricePerHour: z.number().optional(),
         image:z.string().optional(),
+        carType:z.string().optional(),
     })
 })
 

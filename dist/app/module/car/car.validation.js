@@ -13,7 +13,8 @@ const createAcarValidationSchema = zod_1.z.object({
         isDeleted: zod_1.z.boolean().default(false),
         isElectric: zod_1.z.boolean().optional(),
         pricePerHour: zod_1.z.number(),
-        image: zod_1.z.string()
+        image: zod_1.z.string(),
+        carType: zod_1.z.string(),
     })
 });
 const updateAcarValidationSchema = zod_1.z.object({
@@ -27,6 +28,7 @@ const updateAcarValidationSchema = zod_1.z.object({
         isElectric: zod_1.z.boolean().optional(),
         pricePerHour: zod_1.z.number().optional(),
         image: zod_1.z.string().optional(),
+        carType: zod_1.z.string().optional(),
     })
 });
 exports.CarValidatons = {

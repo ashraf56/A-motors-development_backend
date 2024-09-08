@@ -12,4 +12,5 @@ export interface CarInterface {
     pricePerHour: number;
     isDeleted: boolean;
     image:string;
+    carType:string;
 }
