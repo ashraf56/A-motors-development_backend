@@ -23,6 +23,10 @@ const getMybookingsDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield booking_model_1.default.find({ user: id }).populate('user').populate('car');
     return result;
 });
+const getSinglebookingsDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield booking_model_1.default.findById({ _id: id });
+    return result;
+});
 const createBookingDB = (payload, userID) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     const newdata = {};
@@ -38,6 +42,9 @@ const createBookingDB = (payload, userID) => __awaiter(void 0, void 0, void 0, f
     newdata.totalCost = payload.totalCost;
     newdata.endTime = payload.endTime;
     newdata.date = payload.date;
+    newdata.license = payload.license;
+    newdata.nid = payload.nid;
+    newdata.bookingStatus = payload.bookingStatus;
     const session = yield (0, mongoose_1.startSession)();
     try {
         session.startTransaction();
@@ -81,5 +88,6 @@ const getAllBookingsfromDB = (carId, date) => __awaiter(void 0, void 0, void 0, 
 exports.BookingServices = {
     createBookingDB,
     getAllBookingsfromDB,
-    getMybookingsDB
+    getMybookingsDB,
+    getSinglebookingsDB
 };

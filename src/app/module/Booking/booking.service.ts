@@ -14,6 +14,11 @@ const getMybookingsDB = async (id: string) => {
 
     return result
 }
+const getSinglebookingsDB = async (id: string) => {
+
+    const result = await Booking.findById({ _id: id })
+    return result
+}
 
 
 
@@ -39,6 +44,9 @@ const createBookingDB = async (payload: BookingInterface, userID: string) => {
     newdata.totalCost = payload.totalCost
     newdata.endTime = payload.endTime
     newdata.date = payload.date
+    newdata.license= payload.license
+    newdata.nid = payload.nid
+    newdata.bookingStatus=payload.bookingStatus
     const session = await startSession()
     try {
         session.startTransaction()
@@ -109,6 +117,7 @@ const getAllBookingsfromDB = async (carId: string, date: string) => {
 export const BookingServices = {
     createBookingDB,
     getAllBookingsfromDB,
-    getMybookingsDB
+    getMybookingsDB,
+    getSinglebookingsDB
 
 }

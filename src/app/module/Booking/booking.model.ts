@@ -4,6 +4,9 @@ import { BookingInterface } from "./booking.interface";
 
 const BookingSchema = new Schema<BookingInterface>({
     date: { type: String, required: true },
+    license: { type: String, required: true },
+    nid: { type: String, required: true },
+    bookingStatus: { type: String, required: true , default:'processing'},
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User',

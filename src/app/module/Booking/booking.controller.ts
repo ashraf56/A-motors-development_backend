@@ -44,6 +44,18 @@ const getALLBoookingCOntroller = tryCatchWrapper(
         })
     }
 )
+const getSingleBoookingCOntroller = tryCatchWrapper(
+    async (req, res) => {
+      const id = req.params.id 
+        const result = await BookingServices.getSinglebookingsDB(id)
+        res.status(200).json({
+            success: true,
+            statusCode: 200,
+            message: "Booking retrieved successfully",
+            data: result
+        })
+    }
+)
 
 
 
@@ -51,5 +63,6 @@ const getALLBoookingCOntroller = tryCatchWrapper(
 export const BookingController = {
     createBoookingCOntroller,
     getALLBoookingCOntroller,
-    getmyBoookingController
+    getmyBoookingController,
+    getSingleBoookingCOntroller
 }

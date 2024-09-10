@@ -41,8 +41,19 @@ const getALLBoookingCOntroller = (0, tryCatchWrapper_1.tryCatchWrapper)((req, re
         data: result
     });
 }));
+const getSingleBoookingCOntroller = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    const result = yield booking_service_1.BookingServices.getSinglebookingsDB(id);
+    res.status(200).json({
+        success: true,
+        statusCode: 200,
+        message: "Booking retrieved successfully",
+        data: result
+    });
+}));
 exports.BookingController = {
     createBoookingCOntroller,
     getALLBoookingCOntroller,
-    getmyBoookingController
+    getmyBoookingController,
+    getSingleBoookingCOntroller
 };
