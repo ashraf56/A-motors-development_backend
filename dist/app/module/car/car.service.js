@@ -42,11 +42,11 @@ const getALlCarInfoFromDB = () => __awaiter(void 0, void 0, void 0, function* ()
     return result;
 });
 const getAvailableCarInfoFromDB = (searchTerm) => __awaiter(void 0, void 0, void 0, function* () {
-    let query = { status: 'available' };
+    let query = { status: 'available', isDeleted: 'false' };
     if (searchTerm) {
         query = Object.assign(Object.assign({}, query), { $or: [
                 { name: { $regex: searchTerm, $options: 'i' } },
-                { features: { $elemMatch: { $regex: searchTerm, $options: 'i' } } }
+                { features: { $elemMatch: { $regex: searchTerm, $options: 'i' } } },
             ] });
     }
     const result = yield car_model_1.default.find(query);
@@ -58,7 +58,7 @@ const getSIngleCArDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
 });
 const deleteAcarDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield car_model_1.default.findByIdAndUpdate({ _id: id }, {
-        isDeleted: true
+        isDeleted: 'true'
     }, { new: true });
     return result;
 });

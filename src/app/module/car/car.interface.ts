@@ -6,11 +6,11 @@ export interface CarInterface {
     name: string;
     description: string;
     color: string;
-    isElectric: boolean;
+    isElectric: string;
     status: Tstatus;
     features: string[];
     pricePerHour: number;
-    isDeleted: boolean;
+    isDeleted: string;
     image:string;
     carType:string;
 }

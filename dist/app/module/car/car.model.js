@@ -18,8 +18,8 @@ const Carschema = new mongoose_1.Schema({
     },
     status: { type: String, enum: { values: car_constant_1.Status, message: `status is required` } },
     features: { type: [String], required: true },
-    isDeleted: { type: Boolean, default: false },
-    isElectric: { type: Boolean },
+    isDeleted: { type: String },
+    isElectric: { type: String },
     pricePerHour: { type: Number, required: true },
     carType: { type: String, required: true }
 }, {

@@ -21,8 +21,8 @@ const Carschema = new Schema<CarInterface>({
     },
     status: { type: String, enum: { values: Status, message: `status is required` } },
     features: { type: [String], required: true },
-    isDeleted: { type: Boolean, default: false },
-    isElectric: { type: Boolean },
+    isDeleted: { type: String},
+    isElectric: { type: String },
     pricePerHour: { type: Number, required: true },
     carType: { type: String, required: true }
 

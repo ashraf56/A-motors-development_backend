@@ -26,14 +26,15 @@ const getALlCarInfoFromDB = async () => {
     return result
 }
 const getAvailableCarInfoFromDB = async (searchTerm:string | null) => {
-    let query:any = {status: 'available'}; 
+    let query:any = {status: 'available', isDeleted: 'false' }; 
 
     if (searchTerm) {
         query = {
             ...query ,
             $or: [
                 { name: { $regex: searchTerm, $options: 'i' } }, 
-                { features: {$elemMatch:{ $regex: searchTerm, $options: 'i'} } }
+                { features: {$elemMatch:{ $regex: searchTerm, $options: 'i'} } },
+               
             ]
            
         };
@@ -51,7 +52,7 @@ const getSIngleCArDB = async (id: string) => {
 const deleteAcarDB = async (id: string) => {
     const result = await Car.findByIdAndUpdate({ _id: id },
         {
-            isDeleted: true
+            isDeleted: 'true'
         },
         { new: true })
 
