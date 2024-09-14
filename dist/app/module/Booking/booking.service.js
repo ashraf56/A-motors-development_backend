@@ -27,6 +27,34 @@ const getSinglebookingsDB = (id) => __awaiter(void 0, void 0, void 0, function* 
     const result = yield booking_model_1.default.findById({ _id: id });
     return result;
 });
+const CencleBooking = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const session = yield (0, mongoose_1.startSession)();
+    try {
+        session.startTransaction();
+        const bookingInfo = yield booking_model_1.default.findById({ _id: id }).session(session);
+        const carID = bookingInfo === null || bookingInfo === void 0 ? void 0 : bookingInfo.car.toString();
+        const updateCarSatatus = yield car_model_1.default.findByIdAndUpdate({ _id: carID }, {
+            $set: {
+                status: 'available'
+            }
+        }, { new: true, session });
+        if (!updateCarSatatus) {
+            (0, trhowErrorHandller_1.default)('Booking cenclation faild2');
+        }
+        const currenTbooking = yield booking_model_1.default.findByIdAndDelete({ _id: id }).session(session);
+        if (!currenTbooking) {
+            (0, trhowErrorHandller_1.default)('Booking cenclation faild1');
+        }
+        yield session.commitTransaction();
+        yield session.endSession();
+        return bookingInfo;
+    }
+    catch (error) {
+        yield session.abortTransaction();
+        yield session.endSession();
+        (0, trhowErrorHandller_1.default)('Booking  cenclation faild');
+    }
+});
 const createBookingDB = (payload, userID) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     const newdata = {};
@@ -89,5 +117,6 @@ exports.BookingServices = {
     createBookingDB,
     getAllBookingsfromDB,
     getMybookingsDB,
-    getSinglebookingsDB
+    getSinglebookingsDB,
+    CencleBooking
 };

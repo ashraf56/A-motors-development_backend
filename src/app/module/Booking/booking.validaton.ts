@@ -7,7 +7,7 @@ const CreateBookingvzodschema = z.object({
         nid:z.string(),
         user: z.string().optional(),
         car: z.string(),
-        status: z.string(),
+        bookingStatus: z.string(),
         startTime: z.string({
             invalid_type_error: "startTime must be String"
         }),

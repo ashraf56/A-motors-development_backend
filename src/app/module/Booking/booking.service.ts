@@ -21,6 +21,47 @@ const getSinglebookingsDB = async (id: string) => {
 }
 
 
+const CencleBooking = async (id: string) => {
+
+   
+
+    const session = await startSession()
+
+
+    try {
+        session.startTransaction()
+        const bookingInfo = await Booking.findById({ _id: id }).session(session)
+        const carID = bookingInfo?.car.toString()
+        
+        const updateCarSatatus = await Car.findByIdAndUpdate(
+            { _id:carID }, {
+            $set: {
+                status: 'available'
+            }
+
+        },
+            { new: true, session })
+
+            if (!updateCarSatatus) {
+                trhowErrorHandller('Booking cenclation faild2')
+    
+            }
+
+        const currenTbooking = await Booking.findByIdAndDelete({ _id: id }).session(session)
+        if (!currenTbooking) {
+            trhowErrorHandller('Booking cenclation faild1')
+        }
+
+       
+            await session.commitTransaction()
+            await session.endSession()
+            return bookingInfo
+    } catch (error) {
+        await session.abortTransaction()
+        await session.endSession()        
+        trhowErrorHandller('Booking  cenclation faild')
+    }
+}
 
 
 
@@ -44,9 +85,9 @@ const createBookingDB = async (payload: BookingInterface, userID: string) => {
     newdata.totalCost = payload.totalCost
     newdata.endTime = payload.endTime
     newdata.date = payload.date
-    newdata.license= payload.license
+    newdata.license = payload.license
     newdata.nid = payload.nid
-    newdata.bookingStatus=payload.bookingStatus
+    newdata.bookingStatus = payload.bookingStatus
     const session = await startSession()
     try {
         session.startTransaction()
@@ -118,6 +159,7 @@ export const BookingServices = {
     createBookingDB,
     getAllBookingsfromDB,
     getMybookingsDB,
-    getSinglebookingsDB
+    getSinglebookingsDB,
+    CencleBooking
 
 }

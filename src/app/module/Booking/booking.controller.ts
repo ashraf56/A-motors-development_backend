@@ -4,11 +4,27 @@ import { BookingServices } from "./booking.service"
 
 const getmyBoookingController = tryCatchWrapper(
     async (req, res) => {
+       
+        
         const result = await BookingServices.getMybookingsDB(req.user.id)
         res.status(200).json({
             success: true,
             statusCode: 200,
             message: "My Bookings retrieved successfully",
+            data: result
+        })
+    }
+)
+
+const getCencleBoookingController = tryCatchWrapper(
+    async (req, res) => {
+       
+        const {id} = req.params
+        const result = await BookingServices.CencleBooking(id)        
+        res.status(200).json({
+            success: true,
+            statusCode: 200,
+            message: "Booking cencled successfully",
             data: result
         })
     }
@@ -64,5 +80,6 @@ export const BookingController = {
     createBoookingCOntroller,
     getALLBoookingCOntroller,
     getmyBoookingController,
-    getSingleBoookingCOntroller
+    getSingleBoookingCOntroller,
+    getCencleBoookingController
 }
