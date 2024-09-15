@@ -29,6 +29,19 @@ const getCencleBoookingController = tryCatchWrapper(
         })
     }
 )
+const setApproveBoookingController = tryCatchWrapper(
+    async (req, res) => {
+       
+        const {id} = req.params
+        const result = await BookingServices.SetapproveBooking(id)        
+        res.status(200).json({
+            success: true,
+            statusCode: 200,
+            message: "Booking Approved successfully",
+            data: result
+        })
+    }
+)
 
 
 
@@ -81,5 +94,6 @@ export const BookingController = {
     getALLBoookingCOntroller,
     getmyBoookingController,
     getSingleBoookingCOntroller,
-    getCencleBoookingController
+    getCencleBoookingController,
+    setApproveBoookingController
 }

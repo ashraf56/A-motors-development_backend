@@ -12,6 +12,7 @@ const authGuard_1 = __importDefault(require("../../middleware/authGuard"));
 const router = (0, express_1.Router)();
 router.get('/my-bookings', (0, authGuard_1.default)('user'), booking_controller_1.BookingController.getmyBoookingController);
 router.delete('/:id', (0, authGuard_1.default)('user', 'admin'), booking_controller_1.BookingController.getCencleBoookingController);
+router.patch('/:id', (0, authGuard_1.default)('admin'), booking_controller_1.BookingController.setApproveBoookingController);
 router.get('/:id', (0, authGuard_1.default)('user', "admin"), booking_controller_1.BookingController.getSingleBoookingCOntroller);
 router.get('/', (0, authGuard_1.default)('admin'), booking_controller_1.BookingController.getALLBoookingCOntroller);
 router.post('/book-car', (0, authGuard_1.default)('user'), (0, validateRequest_1.default)(booking_validaton_1.BookingValidations.CreateBookingvzodschema), booking_controller_1.BookingController.createBoookingCOntroller);

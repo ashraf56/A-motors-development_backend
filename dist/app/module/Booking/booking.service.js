@@ -55,6 +55,14 @@ const CencleBooking = (id) => __awaiter(void 0, void 0, void 0, function* () {
         (0, trhowErrorHandller_1.default)('Booking  cenclation faild');
     }
 });
+const SetapproveBooking = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const approveBookingStatus = yield booking_model_1.default.findByIdAndUpdate({ _id: id }, {
+        $set: {
+            bookingStatus: 'approve'
+        }
+    }, { new: true });
+    return approveBookingStatus;
+});
 const createBookingDB = (payload, userID) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     const newdata = {};
@@ -118,5 +126,6 @@ exports.BookingServices = {
     getAllBookingsfromDB,
     getMybookingsDB,
     getSinglebookingsDB,
-    CencleBooking
+    CencleBooking,
+    SetapproveBooking
 };

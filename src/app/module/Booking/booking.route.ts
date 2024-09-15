@@ -9,6 +9,7 @@ const router = Router()
 
 router.get('/my-bookings', authGuardValidator('user'), BookingController.getmyBoookingController)
 router.delete('/:id', authGuardValidator('user','admin'), BookingController.getCencleBoookingController)
+router.patch('/:id', authGuardValidator('admin'), BookingController.setApproveBoookingController)
 router.get('/:id', authGuardValidator('user',"admin"), BookingController.getSingleBoookingCOntroller)
 router.get('/', authGuardValidator('admin'), BookingController.getALLBoookingCOntroller)
 

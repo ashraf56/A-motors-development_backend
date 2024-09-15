@@ -131,7 +131,6 @@ const returnCarDB = async (bookingId: string, endTime: string) => {
 
 
 
-
 const updateAcarDB = async (id: string, payload: Partial<CarInterface>) => {
 
     const { features, ...data } = payload

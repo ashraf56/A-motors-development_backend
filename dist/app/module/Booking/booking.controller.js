@@ -31,6 +31,16 @@ const getCencleBoookingController = (0, tryCatchWrapper_1.tryCatchWrapper)((req,
         data: result
     });
 }));
+const setApproveBoookingController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const result = yield booking_service_1.BookingServices.SetapproveBooking(id);
+    res.status(200).json({
+        success: true,
+        statusCode: 200,
+        message: "Booking Approved successfully",
+        data: result
+    });
+}));
 const createBoookingCOntroller = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield booking_service_1.BookingServices.createBookingDB(req.body, req.user.id);
     res.status(200).json({
@@ -66,5 +76,6 @@ exports.BookingController = {
     getALLBoookingCOntroller,
     getmyBoookingController,
     getSingleBoookingCOntroller,
-    getCencleBoookingController
+    getCencleBoookingController,
+    setApproveBoookingController
 };
