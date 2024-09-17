@@ -12,5 +12,8 @@ const authGuard_1 = __importDefault(require("../../middleware/authGuard"));
 const router = (0, express_1.Router)();
 router.post('/signup', (0, validateRequest_1.default)(user_validation_1.UserValidations.createUservalidationSchema), user_controller_1.UserCOntrollers.CreateUserController);
 router.get('/', (0, authGuard_1.default)('admin'), user_controller_1.UserCOntrollers.getAllUserController);
+router.get('/:id', (0, authGuard_1.default)('admin', 'user'), user_controller_1.UserCOntrollers.getSingleuserController);
+router.put('/:id', (0, authGuard_1.default)('admin', 'user'), user_controller_1.UserCOntrollers.getUpdateuserController);
+router.patch('/:id', (0, authGuard_1.default)('admin'), user_controller_1.UserCOntrollers.makeAdminController);
 router.post('/login', (0, validateRequest_1.default)(user_validation_1.UserValidations.LoginvalidationSchema), user_controller_1.UserCOntrollers.LoginController);
 exports.Userroute = router;

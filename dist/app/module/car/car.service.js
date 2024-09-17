@@ -64,9 +64,6 @@ const deleteAcarDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
 });
 const returnCarDB = (bookingId, endTime) => __awaiter(void 0, void 0, void 0, function* () {
     const bookings = yield booking_model_1.default.findById(bookingId);
-    if ((bookings === null || bookings === void 0 ? void 0 : bookings.endTime) !== null) {
-        (0, trhowErrorHandller_1.default)(' Faild to return');
-    }
     const session = yield (0, mongoose_1.startSession)();
     try {
         session.startTransaction();
@@ -76,7 +73,7 @@ const returnCarDB = (bookingId, endTime) => __awaiter(void 0, void 0, void 0, fu
         const [currentEndHour, endmin] = endTime.split(":").map(Number);
         const currentPricePerHour = carsinfo === null || carsinfo === void 0 ? void 0 : carsinfo.pricePerHour;
         const totalCurrentcost = bookings === null || bookings === void 0 ? void 0 : bookings.totalCost;
-        // converting current  startTime an endtime into hours
+        // converting current  startTime and endtime into hours
         const totalStartTime = startHour + startMin / 60;
         const totalEndTime = currentEndHour + endmin / 60;
         const totalHours = totalEndTime - totalStartTime;
@@ -84,9 +81,9 @@ const returnCarDB = (bookingId, endTime) => __awaiter(void 0, void 0, void 0, fu
         const FinalCost = rideCost + totalCurrentcost;
         const totalFinalcost = Math.ceil(FinalCost);
         // updating booking info .
-        const Bookingdata = yield booking_model_1.default.findByIdAndUpdate({ _id: bookingId }, { $set: { endTime: endTime, totalCost: totalFinalcost } }, { upsert: true, new: true, session });
+        const Bookingdata = yield booking_model_1.default.findByIdAndUpdate({ _id: bookingId }, { $set: { endTime: endTime, totalCost: totalFinalcost, bookingStatus: 'completed' } }, { upsert: true, new: true, session });
         if (!Bookingdata) {
-            (0, trhowErrorHandller_1.default)('Failed to return');
+            (0, trhowErrorHandller_1.default)('Failed to return1');
         }
         // Updating the car status
         const updateCarstatus = yield car_model_1.default.findByIdAndUpdate({ _id: carId }, {

@@ -10,7 +10,9 @@ export default {
     Defaultpass: process.env.Defaultpass,
     saltNumber: process.env.saltNumber,
     JWT_sec_Token: process.env.JWT_sec_Token,
-    JWT_Refresh_token: process.env.JWT_Refresh_token
+    JWT_Refresh_token: process.env.JWT_Refresh_token,
+    StoreID:process.env.aamarpaytest,
+    SIGNETURE_KEY:process.env.SignatureKey
 
 
 }

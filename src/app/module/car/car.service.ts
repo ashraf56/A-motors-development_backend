@@ -63,9 +63,8 @@ const deleteAcarDB = async (id: string) => {
 const returnCarDB = async (bookingId: string, endTime: string) => {
 
     const bookings = await Booking.findById(bookingId)
-    if (bookings?.endTime !== null) {
-        trhowErrorHandller(' Faild to return');
-    }
+    
+  
     const session = await startSession()
     try {
         session.startTransaction()
@@ -78,10 +77,11 @@ const returnCarDB = async (bookingId: string, endTime: string) => {
         const currentPricePerHour = carsinfo?.pricePerHour as number
         const totalCurrentcost = bookings?.totalCost as number
 
-        // converting current  startTime an endtime into hours
+        // converting current  startTime and endtime into hours
         const totalStartTime = startHour + startMin / 60
         const totalEndTime = currentEndHour + endmin / 60
-
+      
+   
         const totalHours = totalEndTime - totalStartTime
         const rideCost = currentPricePerHour * totalHours
         const FinalCost = rideCost + totalCurrentcost
@@ -91,11 +91,11 @@ const returnCarDB = async (bookingId: string, endTime: string) => {
         // updating booking info .
         const Bookingdata = await Booking.findByIdAndUpdate(
             { _id: bookingId },
-            { $set: { endTime: endTime, totalCost: totalFinalcost } },
+            { $set: { endTime: endTime, totalCost: totalFinalcost , bookingStatus:'completed'} },
             { upsert: true, new: true, session })
 
         if (!Bookingdata) {
-            trhowErrorHandller('Failed to return')
+            trhowErrorHandller('Failed to return1')
 
         }
         // Updating the car status

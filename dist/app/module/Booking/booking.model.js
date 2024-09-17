@@ -19,7 +19,8 @@ const BookingSchema = new mongoose_1.Schema({
         type: String, required: true
     },
     endTime: { type: String, default: null },
-    totalCost: { type: Number, default: 0 }
+    totalCost: { type: Number, default: 0 },
+    paymentStatus: { type: String }
 }, {
     timestamps: true
 });

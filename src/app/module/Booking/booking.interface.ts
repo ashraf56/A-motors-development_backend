@@ -10,5 +10,6 @@ export interface BookingInterface {
     startTime: string;
     endTime: string;
     totalCost: number;
+    paymentStatus:string;
     bookingStatus:string;
 }

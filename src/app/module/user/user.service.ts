@@ -20,6 +20,36 @@ const getAllUserDB = async () => {
     return result
 
 }
+const getSingleUserDB = async (id: string) => {
+
+    const result = await User.findById(id)
+    return result
+
+}
+const getUpdateUserDB = async (id: string, payload: Partial<Userinterface>) => {
+
+
+
+    const result = await User.findByIdAndUpdate(
+        { _id: id }, payload, { new: true })
+
+    return result
+
+}
+const makeAdminDB = async (id: string) => {
+
+
+
+    const result = await User.findByIdAndUpdate(
+        { _id: id }, {
+            $set:{
+            role:'admin'
+            }
+        }, { new: true })
+
+    return result
+
+}
 
 
 const LogInUserDB = async (payload: Userinterface) => {
@@ -56,5 +86,8 @@ const LogInUserDB = async (payload: Userinterface) => {
 export const Userservices = {
     createUserDB,
     LogInUserDB,
-    getAllUserDB
+    getAllUserDB,
+    getSingleUserDB,
+    getUpdateUserDB,
+    makeAdminDB
 }

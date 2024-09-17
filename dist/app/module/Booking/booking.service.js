@@ -58,7 +58,7 @@ const CencleBooking = (id) => __awaiter(void 0, void 0, void 0, function* () {
 const SetapproveBooking = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const approveBookingStatus = yield booking_model_1.default.findByIdAndUpdate({ _id: id }, {
         $set: {
-            bookingStatus: 'approve'
+            bookingStatus: 'approved'
         }
     }, { new: true });
     return approveBookingStatus;

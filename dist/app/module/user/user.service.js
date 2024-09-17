@@ -29,6 +29,22 @@ const getAllUserDB = () => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield user_model_1.default.find();
     return result;
 });
+const getSingleUserDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield user_model_1.default.findById(id);
+    return result;
+});
+const getUpdateUserDB = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield user_model_1.default.findByIdAndUpdate({ _id: id }, payload, { new: true });
+    return result;
+});
+const makeAdminDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield user_model_1.default.findByIdAndUpdate({ _id: id }, {
+        $set: {
+            role: 'admin'
+        }
+    }, { new: true });
+    return result;
+});
 const LogInUserDB = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     const users = yield user_model_1.default.findOne({ email: payload.email });
     if (!users) {
@@ -50,5 +66,8 @@ const LogInUserDB = (payload) => __awaiter(void 0, void 0, void 0, function* () 
 exports.Userservices = {
     createUserDB,
     LogInUserDB,
-    getAllUserDB
+    getAllUserDB,
+    getSingleUserDB,
+    getUpdateUserDB,
+    makeAdminDB
 };

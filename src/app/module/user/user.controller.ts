@@ -21,7 +21,47 @@ const getAllUserController = tryCatchWrapper(
         res.status(200).json({
             success: true,
             statusCode: 200,
+            message: "Users retrieved successfully",
+            data: result
+        })
+    }
+)
+const getSingleuserController = tryCatchWrapper(
+    async (req, res) => {
+        const {id}= req.params
+        const result = await Userservices.getSingleUserDB(id)
+
+        res.status(200).json({
+            success: true,
+            statusCode: 200,
             message: "User retrieved successfully",
+            data: result
+        })
+    }
+)
+const makeAdminController = tryCatchWrapper(
+    async (req, res) => {
+        const {id}= req.params
+        const result = await Userservices.makeAdminDB(id)
+
+        res.status(200).json({
+            success: true,
+            statusCode: 200,
+            message: "User role updated successfully",
+            data: result
+        })
+    }
+)
+const getUpdateuserController = tryCatchWrapper(
+    async (req, res) => {
+        const {id}= req.params
+        const payload = req.body
+        const result = await Userservices.getUpdateUserDB(id,payload)
+
+        res.status(200).json({
+            success: true,
+            statusCode: 200,
+            message: "User info updated successfully",
             data: result
         })
     }
@@ -48,5 +88,8 @@ const LoginController = tryCatchWrapper(
 export const UserCOntrollers = {
     CreateUserController,
     LoginController,
-    getAllUserController
+    getAllUserController,
+    getSingleuserController,
+    getUpdateuserController,
+    makeAdminController
 }

@@ -66,7 +66,7 @@ const CencleBooking = async (id: string) => {
 const SetapproveBooking =  async (id:string)=>{
    const approveBookingStatus = await Booking.findByIdAndUpdate({_id:id}, {
     $set:{
-        bookingStatus:'approve'
+        bookingStatus:'approved'
     }
    },{new:true}) 
 

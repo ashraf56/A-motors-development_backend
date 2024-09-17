@@ -14,7 +14,8 @@ const CreateBookingvzodschema = zod_1.z.object({
             invalid_type_error: "startTime must be String"
         }),
         endTime: zod_1.z.string().optional(),
-        totalCost: zod_1.z.number().optional()
+        totalCost: zod_1.z.number().optional(),
+        paymentStatus: zod_1.z.string().optional()
     })
 });
 exports.BookingValidations = {

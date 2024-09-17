@@ -12,8 +12,9 @@ const CreateBookingvzodschema = z.object({
             invalid_type_error: "startTime must be String"
         }),
         endTime: z.string().optional(),
-        totalCost: z.number().optional()
-
+        totalCost: z.number().optional(),
+        paymentStatus: z.string().optional()
+       
     })
 })
 

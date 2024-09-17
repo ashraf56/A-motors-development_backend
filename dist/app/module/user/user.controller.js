@@ -27,7 +27,38 @@ const getAllUserController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) =
     res.status(200).json({
         success: true,
         statusCode: 200,
+        message: "Users retrieved successfully",
+        data: result
+    });
+}));
+const getSingleuserController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const result = yield user_service_1.Userservices.getSingleUserDB(id);
+    res.status(200).json({
+        success: true,
+        statusCode: 200,
         message: "User retrieved successfully",
+        data: result
+    });
+}));
+const makeAdminController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const result = yield user_service_1.Userservices.makeAdminDB(id);
+    res.status(200).json({
+        success: true,
+        statusCode: 200,
+        message: "User role updated successfully",
+        data: result
+    });
+}));
+const getUpdateuserController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const payload = req.body;
+    const result = yield user_service_1.Userservices.getUpdateUserDB(id, payload);
+    res.status(200).json({
+        success: true,
+        statusCode: 200,
+        message: "User info updated successfully",
         data: result
     });
 }));
@@ -46,5 +77,8 @@ const LoginController = (0, tryCatchWrapper_1.tryCatchWrapper)((req, res) => __a
 exports.UserCOntrollers = {
     CreateUserController,
     LoginController,
-    getAllUserController
+    getAllUserController,
+    getSingleuserController,
+    getUpdateuserController,
+    makeAdminController
 };

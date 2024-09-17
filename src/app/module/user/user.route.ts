@@ -12,6 +12,12 @@ router.post('/signup', validateRequest(UserValidations.createUservalidationSchem
     UserCOntrollers.CreateUserController)
 router.get('/', authGuardValidator('admin'),
     UserCOntrollers.getAllUserController)
+router.get('/:id', authGuardValidator('admin', 'user'),
+    UserCOntrollers.getSingleuserController)
+router.put('/:id', authGuardValidator('admin', 'user'),
+    UserCOntrollers.getUpdateuserController)
+router.patch('/:id', authGuardValidator('admin'),
+    UserCOntrollers.makeAdminController)
 
 router.post('/login', validateRequest(UserValidations.LoginvalidationSchema), UserCOntrollers.LoginController)
 
