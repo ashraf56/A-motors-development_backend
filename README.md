@@ -49,6 +49,9 @@ npm i
 Database_url= set here your mongodb database url
 PORT= set your port
 Node_Env= development
+PORT=5000
+Defaultpass  = abc1234
+saltNumber = 10 
 JWT_sec_Token = your token
 ```
 
