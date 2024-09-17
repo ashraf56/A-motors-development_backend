@@ -8,7 +8,7 @@ import globalErrorhandler from './app/middleware/globalErrorhandler';
 
 const app = express()
 
-app.use(cors({origin:['http://localhost:5173'], credentials:true}))
+app.use(cors({origin:['https://a-motors-development-backend.vercel.app/'], credentials:true}))
 app.use(express.json())
 app.use(cookieParser())
 app.use('/api', router)
